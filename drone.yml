@@ -1,0 +1,56 @@
+pipeline:
+
+  #http://plugins.drone.io/drone-plugins/drone-docker/
+  build-branch:
+    image: plugins/docker
+    repo: scienta/document-word-export
+    dockerfile: ./Dockerfile
+    context: ./
+    auto_tag: false
+    tags: "branch-${DRONE_BRANCH}"
+    storage_path: /drone/docker-doc-ex
+    secrets: [ docker_username, docker_password ]
+    when:
+      event: [push]
+
+  #http://plugins.drone.io/drone-plugins/drone-docker/
+  build-tag:
+    image: plugins/docker
+    repo: scienta/html-pdf-export
+    dockerfile: ./Dockerfile
+    context: ./
+    auto_tag: false
+    tags: "${DRONE_TAG}"
+    storage_path: /drone/docker-doc-ex
+    secrets: [ docker_username, docker_password ]
+    when:
+      event: tag
+
+  slack-build-success:
+    image: plugins/slack
+    webhook:  https://hooks.slack.com/services/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
+    channel: scienta-ci
+    template: >
+      {{#if build.tag}}
+        Build completed for {{repo.name}} in {{since build.started}}.
+        - scienta/document-word-export:{{build.tag}}
+      {{else}}
+        Build completed for {{repo.name}} in {{since build.started}}.
+        - scienta/document-word-export:{{build.branch}}
+      {{/if}}
+    when:
+      event: [tag, push]
+      status: [success]
+
+  slack-build-failed:
+    image: plugins/slack
+    webhook:  https://hooks.slack.com/services/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
+    channel: development
+    template: |
+      {{repo.name}} build {{build.number}} by {{build.author}} failed.
+      Please check {{build.link}}
+    when:
+      event: [tag, push]
+      status: [failure]
+
+branches: [ master, develop ]

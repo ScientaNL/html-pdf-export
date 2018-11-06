@@ -27,4 +27,4 @@ ENV PATH "$PATH:/usr/bin/wkhtmltopdf"
 COPY index.js .
 
 EXPOSE 8000
-ENTRYPOINT node index.js
+CMD ["node", "index.js"]

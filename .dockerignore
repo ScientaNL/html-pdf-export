@@ -1,0 +1,6 @@
+# do not copy/add files below to docker image on-build
+.git
+.gitignore
+.dockerignore
+Dockerfile
+/examples

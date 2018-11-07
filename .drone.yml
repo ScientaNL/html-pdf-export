@@ -4,7 +4,7 @@ pipeline:
   build-branch:
     image: plugins/docker
     repo: scienta/html-pdf-export
-    dockerfile: ./Dockerfile
+    dockerfile: Dockerfile
     context: ./
     auto_tag: false
     tags: "branch-${DRONE_BRANCH}"

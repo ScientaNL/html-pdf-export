@@ -3,7 +3,7 @@ pipeline:
   #http://plugins.drone.io/drone-plugins/drone-docker/
   build-branch:
     image: plugins/docker
-    repo: scienta/html-pdf-export
+    repo: scienta/{{DRONE_REPO_NAME}}
     dockerfile: docker/Dockerfile
     context: ./
     auto_tag: false
@@ -16,7 +16,7 @@ pipeline:
   #http://plugins.drone.io/drone-plugins/drone-docker/
   build-tag:
     image: plugins/docker
-    repo: scienta/html-pdf-export
+    repo: scienta/{{DRONE_REPO_NAME}}
     dockerfile: docker/Dockerfile
     context: ./
     auto_tag: false
@@ -33,10 +33,10 @@ pipeline:
     template: >
       {{#if build.tag}}
         Build completed for {{repo.name}} in {{since build.started}}.
-        - scienta/html-pdf-export:{{build.tag}}
+        - {{DRONE_REPO_NAME}}:{{build.tag}}
       {{else}}
         Build completed for {{repo.name}} in {{since build.started}}.
-        - scienta/html-pdf-export:{{build.branch}}
+        - scienta/{{DRONE_REPO_NAME}}:{{build.branch}}
       {{/if}}
     when:
       event: [tag, push]
@@ -52,5 +52,3 @@ pipeline:
     when:
       event: [tag, push]
       status: [failure]
-
-branches: [ master, develop ]

@@ -33,7 +33,7 @@ pipeline:
     template: >
       {{#if build.tag}}
         Build completed for {{repo.name}} in {{since build.started}}.
-        - {{DRONE_REPO_NAME}}:{{build.tag}}
+        - scienta/{{DRONE_REPO_NAME}}:{{build.tag}}
       {{else}}
         Build completed for {{repo.name}} in {{since build.started}}.
         - scienta/{{DRONE_REPO_NAME}}:{{build.branch}}

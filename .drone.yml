@@ -4,7 +4,7 @@ pipeline:
   build-branch:
     image: plugins/docker
     repo: scienta/{{DRONE_REPO_NAME}}
-    dockerfile: docker/Dockerfile
+    dockerfile: Dockerfile
     context: ./
     auto_tag: false
     tags: "branch-${DRONE_BRANCH}"
@@ -17,7 +17,7 @@ pipeline:
   build-tag:
     image: plugins/docker
     repo: scienta/{{DRONE_REPO_NAME}}
-    dockerfile: docker/Dockerfile
+    dockerfile: Dockerfile
     context: ./
     auto_tag: false
     tags: "${DRONE_TAG}"

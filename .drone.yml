@@ -3,7 +3,7 @@ pipeline:
   #http://plugins.drone.io/drone-plugins/drone-docker/
   build-branch:
     image: plugins/docker
-    repo: scienta/{{DRONE_REPO_NAME}}
+    repo: scienta/${DRONE_REPO_NAME}
     dockerfile: Dockerfile
     context: ./
     auto_tag: false
@@ -16,7 +16,7 @@ pipeline:
   #http://plugins.drone.io/drone-plugins/drone-docker/
   build-tag:
     image: plugins/docker
-    repo: scienta/{{DRONE_REPO_NAME}}
+    repo: scienta/${DRONE_REPO_NAME}
     dockerfile: Dockerfile
     context: ./
     auto_tag: false
@@ -33,10 +33,10 @@ pipeline:
     template: >
       {{#if build.tag}}
         Build completed for {{repo.name}} in {{since build.started}}.
-        - scienta/{{DRONE_REPO_NAME}}:{{build.tag}}
+        - scienta/{{repo.name}}:{{build.tag}}
       {{else}}
         Build completed for {{repo.name}} in {{since build.started}}.
-        - scienta/{{DRONE_REPO_NAME}}:{{build.branch}}
+        - scienta/{{repo.name}}:{{build.branch}}
       {{/if}}
     when:
       event: [tag, push]

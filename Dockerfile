@@ -21,5 +21,7 @@ ENV PATH "$PATH:/usr/bin/wkhtmltopdf"
 
 COPY index.js .
 
+RUN chmod 777 /tmp
+
 EXPOSE 8000
 CMD ["node", "index.js"]

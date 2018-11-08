@@ -18,6 +18,7 @@ RUN apk add --update --no-cache \
 # This binary's build steps were configured by https://github.com/alloylab/Docker-Alpine-wkhtmltopdf including qt patches
 COPY wkhtmltopdf /usr/bin/wkhtmltopdf
 ENV PATH "$PATH:/usr/bin/wkhtmltopdf"
+RUN chmod -R 777 /usr/bin/wkhtmltopdf
 
 COPY index.js .
 

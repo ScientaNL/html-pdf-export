@@ -1,6 +1,7 @@
 const http = require('http');
 const urlParser = require('url').parse;
 const spawn = require('child_process').spawn;
+const tempDir = require('os').tmpdir();
 const fileSystem = require('fs');
 
 const server = http.createServer((request, response) => {
@@ -30,7 +31,7 @@ const generatePdf = (request, response) => {
     });
 
     request.on('end', () => {
-        const tempFile = '/tmp/' + clientId + '.pdf';
+        const tempFile = tempDir + '/' + clientId + '.pdf';
         const wkhtmltopdf = spawn('wkhtmltopdf', [
             '--quiet',
             '--print-media-type',

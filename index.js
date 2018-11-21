@@ -9,7 +9,7 @@ const server = http.createServer((request, response) => {
     const requestPath = urlParser(request.url).pathname;
     generatePdf(request, response);
 
-}).listen(8000);
+}).listen(80);
 
 server.on('error', function (e) {
     console.log(e);

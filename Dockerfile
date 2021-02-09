@@ -9,8 +9,8 @@ RUN apk add --update --no-cache \
             libxrender \
             libxext \
             libintl \
-            libcrypto1.0 \
-            libssl1.0 \
+            libcrypto1.1 \
+            libssl1.1 \
             ttf-opensans
 
 # We use a pre-compiled version of wkhtmltopdf because there are no Alpine binaries available on https://wkhtmltopdf.org/downloads.html

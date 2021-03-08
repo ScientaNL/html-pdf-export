@@ -1,5 +1,5 @@
 # html-pdf-export
-HTTP Service to convert HTML to PDF. This image is based on [werkspot/html2pdf](https://github.com/Werkspot/html2pdf).
+HTTP Service to convert HTML to PDF. Using image from https://github.com/Surnet/docker-wkhtmltopdf
 
 We used alpine linux instead of ubuntu to drasticly decrease the container size.
 

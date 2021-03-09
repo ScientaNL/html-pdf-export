@@ -1,24 +1,4 @@
-FROM node:8-alpine
-
-RUN apk add --update --no-cache \
-            xvfb \
-            libgcc \
-            libstdc++ \
-            libx11 \
-            glib \
-            libxrender \
-            libxext \
-            libintl \
-            libcrypto1.1 \
-            libssl1.1 \
-            ttf-opensans
-
-# We use a pre-compiled version of wkhtmltopdf because there are no Alpine binaries available on https://wkhtmltopdf.org/downloads.html
-# There is a version of wkhtml in alpine's git repository, but it is in the testing directory, so we don't want to reference that.
-# This binary's build steps were configured by https://github.com/alloylab/Docker-Alpine-wkhtmltopdf including qt patches
-COPY wkhtmltopdf /usr/bin/wkhtmltopdf
-ENV PATH "$PATH:/usr/bin/wkhtmltopdf"
-RUN chmod -R 777 /usr/bin/wkhtmltopdf
+FROM surnet/alpine-node-wkhtmltopdf:8.11.3-0.12.5-full-font
 
 COPY index.js .
 

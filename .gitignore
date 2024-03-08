@@ -36,6 +36,11 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
+# IDE files
+.idea
+
 # dotenv environment variables file
 .env
 
+# generated files
+*.pdf

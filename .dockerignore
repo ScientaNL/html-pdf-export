@@ -1,6 +1,10 @@
-# do not copy/add files below to docker image on-build
+node_modules
+examples
 .git
+.github
 .gitignore
 .dockerignore
-Dockerfile
-/examples
+.editorconfig
+Dockerfile*
+README.md
+LICENSE

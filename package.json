@@ -1,0 +1,15 @@
+{
+	"name": "html-pdf-export",
+	"module": "src/index.ts",
+	"type": "module",
+	"dependencies": {
+		"nanoid": "^5.0.6",
+		"pino": "^8.19.0"
+	},
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	}
+}
